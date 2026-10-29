@@ -1,0 +1,7 @@
+.env
+*.log
+results_*.json
+__pycache__/
+*.pyc
+.agents/__pycache__/
+pipeline/__pycache__/

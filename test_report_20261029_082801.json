@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-10-29T00:28:01.400071+00:00",
+  "summary": {
+    "passed": 0,
+    "total": 1,
+    "avg_time_s": 0.4
+  },
+  "model_pings": {
+    "DeepSeek": {
+      "ok": true,
+      "ms": 360,
+      "err": ""
+    },
+    "GLM": {
+      "ok": true,
+      "ms": 350,
+      "err": ""
+    },
+    "MiniMax": {
+      "ok": true,
+      "ms": 350,
+      "err": ""
+    }
+  },
+  "tests": [
+    {
+      "name": "LoginBypass",
+      "category": "web",
+      "model": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "passed": false,
+      "chars": 0,
+      "elapsed_s": 0.4,
+      "keywords_found": [],
+      "keywords_missing": [
+        "sql injection",
+        "sqlmap",
+        "login bypass",
+        "' or",
+        "union select"
+      ],
+      "error": ""
+    }
+  ]
+}

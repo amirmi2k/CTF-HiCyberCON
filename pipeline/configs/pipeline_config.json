@@ -1,0 +1,114 @@
+{
+  "pipeline_version": "1.0",
+  "description": "CTF AI Multi-Model Pipeline Configuration",
+
+  "models": {
+    "orchestrator": {
+      "primary": "claude-sonnet-4-6-thinking",
+      "fallbacks": ["claude-sonnet-4-6", "gemini-2.5-pro"],
+      "max_tokens": 8192,
+      "temperature": 0.3
+    },
+    "ctf-recon": {
+      "primary": "gemini-2.0-flash",
+      "fallbacks": ["gemini-2.5-pro"],
+      "max_tokens": 4096,
+      "temperature": 0.1
+    },
+    "ctf-web": {
+      "primary": "claude-sonnet-4-6",
+      "fallbacks": ["gemini-2.5-pro", "gemini-2.0-flash"],
+      "max_tokens": 8192,
+      "temperature": 0.2
+    },
+    "ctf-pwn": {
+      "primary": "claude-sonnet-4-6-thinking",
+      "fallbacks": ["claude-sonnet-4-6", "gemini-2.5-pro"],
+      "max_tokens": 8192,
+      "temperature": 0.1
+    },
+    "ctf-crypto": {
+      "primary": "gemini-2.5-pro",
+      "fallbacks": ["claude-sonnet-4-6-thinking"],
+      "max_tokens": 8192,
+      "temperature": 0.1
+    },
+    "ctf-forensics": {
+      "primary": "gemini-2.0-flash",
+      "fallbacks": ["gemini-2.5-pro"],
+      "max_tokens": 4096,
+      "temperature": 0.1
+    },
+    "ctf-rev": {
+      "primary": "claude-sonnet-4-6",
+      "fallbacks": ["claude-sonnet-4-6-thinking", "gemini-2.5-pro"],
+      "max_tokens": 8192,
+      "temperature": 0.1
+    },
+    "aggregator": {
+      "primary": "claude-sonnet-4-6-thinking",
+      "fallbacks": ["gemini-2.5-pro"],
+      "max_tokens": 4096,
+      "temperature": 0.0
+    }
+  },
+
+  "pipeline": {
+    "agent_timeout_s": 300,
+    "phase1_parallel": true,
+    "phase2_cross_feed": true,
+    "flag_confidence_threshold": 0.85,
+    "max_retries_per_agent": 2,
+    "phases": [
+      {
+        "name": "triage",
+        "description": "All agents run in parallel with no context sharing",
+        "agents": "category_routing",
+        "parallel": true
+      },
+      {
+        "name": "cross-feed",
+        "description": "Recon findings feed into exploitation agents",
+        "agents": "exploitation_only",
+        "parallel": true,
+        "input_from": "triage.ctf-recon"
+      },
+      {
+        "name": "aggregation",
+        "description": "Merge all findings and rank flag candidates",
+        "agents": ["aggregator"],
+        "parallel": false,
+        "input_from": "all"
+      }
+    ]
+  },
+
+  "category_routing": {
+    "web":       ["ctf-recon", "ctf-web"],
+    "pwn":       ["ctf-recon", "ctf-pwn"],
+    "crypto":    ["ctf-crypto"],
+    "rev":       ["ctf-rev"],
+    "reversing": ["ctf-rev"],
+    "forensics": ["ctf-forensics"],
+    "misc":      ["ctf-recon", "ctf-forensics", "ctf-crypto"],
+    "stego":     ["ctf-forensics"],
+    "auto":      ["ctf-recon", "ctf-web", "ctf-pwn", "ctf-crypto", "ctf-forensics", "ctf-rev"]
+  },
+
+  "flag_patterns": [
+    "FLAG\\{[^}]+\\}",
+    "CTF\\{[^}]+\\}",
+    "picoCTF\\{[^}]+\\}",
+    "HTB\\{[^}]+\\}",
+    "flag\\{[^}]+\\}",
+    "DUCTF\\{[^}]+\\}",
+    "UIUCTF\\{[^}]+\\}"
+  ],
+
+  "resilience": {
+    "model_redundancy": true,
+    "cross_validation": true,
+    "min_agents_for_validation": 2,
+    "auto_escalate_on_confidence_below": 0.5
+  }
+}

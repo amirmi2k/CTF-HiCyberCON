@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-10-29T00:30:46.109939+00:00",
+  "summary": {
+    "passed": 0,
+    "total": 1,
+    "avg_time_s": 31.9
+  },
+  "model_pings": {
+    "DeepSeek": {
+      "ok": true,
+      "ms": 260,
+      "err": ""
+    },
+    "GLM": {
+      "ok": true,
+      "ms": 260,
+      "err": ""
+    },
+    "MiniMax": {
+      "ok": true,
+      "ms": 260,
+      "err": ""
+    }
+  },
+  "tests": [
+    {
+      "name": "WeakRSA",
+      "category": "crypto",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": false,
+      "chars": 1403,
+      "elapsed_s": 31.9,
+      "keywords_found": [
+        "rsa",
+        "cipher"
+      ],
+      "keywords_missing": [
+        "prime",
+        "factor",
+        "key",
+        "decrypt"
+      ],
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "timestamp": "2026-10-29T00:29:47.714822+00:00",
+  "summary": {
+    "passed": 10,
+    "total": 11,
+    "avg_time_s": 3.49
+  },
+  "model_pings": {
+    "DeepSeek": {
+      "ok": true,
+      "ms": 330,
+      "err": ""
+    },
+    "GLM": {
+      "ok": true,
+      "ms": 300,
+      "err": ""
+    },
+    "MiniMax": {
+      "ok": true,
+      "ms": 310,
+      "err": ""
+    }
+  },
+  "tests": [
+    {
+      "name": "LoginBypass",
+      "category": "web",
+      "model": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "passed": true,
+      "chars": 3270,
+      "elapsed_s": 0.2,
+      "keywords_found": [
+        "sql injection",
+        "sqlmap",
+        "' or"
+      ],
+      "keywords_missing": [
+        "login bypass",
+        "union select"
+      ],
+      "error": ""
+    },
+    {
+      "name": "WeakRSA",
+      "category": "crypto",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": false,
+      "chars": 67,
+      "elapsed_s": 34.8,
+      "keywords_found": [
+        "rsa"
+      ],
+      "keywords_missing": [
+        "decrypt",
+        "private key",
+        "modular",
+        "euler"
+      ],
+      "error": ""
+    },
+    {
+      "name": "HiddenInPNG",
+      "category": "forensics",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": true,
+      "chars": 2770,
+      "elapsed_s": 0.2,
+      "keywords_found": [
+        "exiftool",
+        "strings",
+        "steganograph",
+        "lsb",
+        "metadata"
+      ],
+      "keywords_missing": [],
+      "error": ""
+    },
+    {
+      "name": "JailbreakBot",
+      "category": "ai",
+      "model": "MiniMaxAI/MiniMax-M2.7",
+      "passed": true,
+      "chars": 3472,
+      "elapsed_s": 1.1,
+      "keywords_found": [
+        "prompt injection",
+        "system prompt",
+        "jailbreak",
+        "ignore",
+        "instruction"
+      ],
+      "keywords_missing": [],
+      "error": ""
+    },
+    {
+      "name": "FindTheDev",
+      "category": "osint",
+      "model": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "passed": true,
+      "chars": 2951,
+      "elapsed_s": 0.4,
+      "keywords_found": [
+        "github",
+        "username",
+        "profile",
+        "social",
+        "search"
+      ],
+      "keywords_missing": [],
+      "error": ""
+    },
+    {
+      "name": "BufferBomb",
+      "category": "pwn",
+      "model": "MiniMaxAI/MiniMax-M2.7",
+      "passed": true,
+      "chars": 3006,
+      "elapsed_s": 0.3,
+      "keywords_found": [
+        "overflow",
+        "gets",
+        "payload",
+        "offset",
+        "shell"
+      ],
+      "keywords_missing": [],
+      "error": ""
+    },
+    {
+      "name": "CrackMe",
+      "category": "rev",
+      "model": "MiniMaxAI/MiniMax-M2.7",
+      "passed": true,
+      "chars": 2747,
+      "elapsed_s": 0.3,
+      "keywords_found": [
+        "strcmp",
+        "xor",
+        "strings"
+      ],
+      "keywords_missing": [
+        "patch",
+        "disassembl"
+      ],
+      "error": ""
+    },
+    {
+      "name": "VaultBreaker",
+      "category": "blockchain",
+      "model": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "passed": true,
+      "chars": 3492,
+      "elapsed_s": 0.2,
+      "keywords_found": [
+        "reentrancy",
+        "fallback",
+        "exploit"
+      ],
+      "keywords_missing": [
+        "external call",
+        "solidity"
+      ],
+      "error": ""
+    },
+    {
+      "name": "PacketSniffer",
+      "category": "network",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": true,
+      "chars": 2141,
+      "elapsed_s": 0.3,
+      "keywords_found": [
+        "tshark",
+        "dns",
+        "http",
+        "packet"
+      ],
+      "keywords_missing": [
+        "wireshark"
+      ],
+      "error": ""
+    },
+    {
+      "name": "InvisibleInk",
+      "category": "stego",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": true,
+      "chars": 1972,
+      "elapsed_s": 0.3,
+      "keywords_found": [
+        "steghide",
+        "lsb",
+        "stegsolve"
+      ],
+      "keywords_missing": [
+        "steganograph",
+        "hidden"
+      ],
+      "error": ""
+    },
+    {
+      "name": "WildCard",
+      "category": "misc",
+      "model": "zai-org/GLM-5.3-Flash",
+      "passed": true,
+      "chars": 3183,
+      "elapsed_s": 0.3,
+      "keywords_found": [
+        "strings",
+        "binwalk",
+        "file",
+        "extract"
+      ],
+      "keywords_missing": [
+        "hex"
+      ],
+      "error": ""
+    }
+  ]
+}
